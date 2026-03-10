@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>张雨婷的作品集</title>
+    <!-- 使用 Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Babel 来让浏览器实时解析 JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://esm.sh/react@18.2.0",
+          "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+          "lucide-react": "https://esm.sh/lucide-react@0.284.0"
+        }
+      }
+    </script>
+    <style>
+      html { scroll-behavior: smooth; }
+      .font-mono { font-family: 'JetBrains Mono', monospace; }
+      .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- 注意：这里的 type 变为了 text/babel，以便浏览器直接运行 JSX -->
+    <script type="text/babel" data-type="module">
+      import React, { useState, useEffect, useRef } from 'react';
+      import ReactDOM from 'react-dom/client';
+      import { 
+        Target, ChevronDown, Mail, Phone, ArrowRight, X, Plus, LineChart, ClipboardList, Globe 
+      } from 'lucide-react';
+
+      const App = () => {
+        // 这里粘贴我之前为你生成的那个 App.jsx 里的全部代码内容...
+        // 为了演示，我放一个简易结构，你操作时请把右侧代码框的内容全部贴进来
+        return (
+          <div className="p-20 text-center">
+            <h1 className="text-4xl font-bold">加载成功！请将完整 App.jsx 代码粘贴至此。</h1>
+            <p className="mt-4 text-gray-500">如果你能看到这个文字，说明 index.html 配置正确。</p>
+          </div>
+        );
+      };
+
+      ReactDOM.createRoot(document.getElementById('root')).render(
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      );
+    </script>
+  </body>
+</html>
