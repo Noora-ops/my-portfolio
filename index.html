@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>张雨婷的作品集 | ZHANG YUTING Portfolio</title>
-    <!-- 引入 Tailwind CSS 进行样式渲染 -->
+    <!-- 引入 Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Import Map: 确保浏览器能识别 React 和图标库 -->
+    <!-- Import Map: 修正了括号错误 -->
     <script type="importmap">
       {
         "imports": {
@@ -17,27 +17,41 @@
         }
       }
     </script>
+    
+    <!-- 引入 Babel 编译器 -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
     <style>
-      /* 这里的样式是为了确保在加载过程中页面不闪烁 */
-      body { margin: 0; background-color: white; }
+      body { margin: 0; background-color: white; min-height: 100vh; }
+      #root { min-height: 100vh; }
     </style>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module">
+
+    <!-- 这里的 type 必须是 text/babel，data-type 必须是 module -->
+    <script type="text/babel" data-type="module">
       import React from 'react';
       import ReactDOM from 'react-dom/client';
       
-      /** * 重要：这里引用的路径 './src/App.jsx' 
-       * 必须对应你 GitHub 仓库中 src 文件夹下的 App.jsx 文件
+      /**
+       * 路径说明：
+       * 如果你的 App.jsx 在 src 文件夹下，请确保 GitHub 路径是 src/App.jsx
        */
       import App from './src/App.jsx';
 
+      const AppContainer = () => {
+        return (
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <App />
+          </React.Suspense>
+        );
+      };
+
       const rootElement = document.getElementById('root');
       if (rootElement) {
-        ReactDOM.createRoot(rootElement).render(
-          React.createElement(React.StrictMode, null, React.createElement(App))
-        );
+        const root = ReactDOM.createRoot(rootElement);
+        root.render(<AppContainer />);
       }
     </script>
   </body>
