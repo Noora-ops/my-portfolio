@@ -7,7 +7,7 @@
     <!-- 引入 Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Import Map: 修正了括号错误 -->
+    <!-- Import Map: 修正了括号错误并确保模块解析 -->
     <script type="importmap">
       {
         "imports": {
@@ -22,7 +22,7 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
     <style>
-      body { margin: 0; background-color: white; min-height: 100vh; }
+      body { margin: 0; background-color: white; min-height: 100vh; overflow-x: hidden; }
       #root { min-height: 100vh; }
     </style>
   </head>
@@ -35,14 +35,14 @@
       import ReactDOM from 'react-dom/client';
       
       /**
-       * 路径说明：
-       * 如果你的 App.jsx 在 src 文件夹下，请确保 GitHub 路径是 src/App.jsx
+       * 路径优化：
+       * 使用基于根目录的路径 '/src/App.jsx'，避免相对路径导致的问题
        */
-      import App from './src/App.jsx';
+      import App from '/src/App.jsx';
 
       const AppContainer = () => {
         return (
-          <React.Suspense fallback={<div>Loading...</div>}>
+          <React.Suspense fallback={<div style={{padding: '20px', textAlign: 'center'}}>加载中...</div>}>
             <App />
           </React.Suspense>
         );
