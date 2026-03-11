@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>张雨婷的作品集 | ZHANG YUTING Portfolio</title>
+    <!-- 加载样式库 -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 依赖配置 -->
     <script type="importmap">
       {
         "imports": {
@@ -14,21 +17,37 @@
         }
       }
     </script>
+    
+    <!-- 解析 JSX -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <style>
+      body { margin: 0; background-color: #f8f9fa; min-height: 100vh; display: flex; flex-direction: column; }
+      #root { flex: 1; display: flex; flex-direction: column; }
+      .loading-box { display: flex; justify-content: center; align-items: center; height: 100vh; font-family: sans-serif; }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <!-- 删除了旧的提示文字，换成了明确的加载状态 -->
+    <div id="root">
+      <div class="loading-box">正在加载正式版作品集，请稍候...</div>
+    </div>
+
     <script type="text/babel" data-type="module">
       import React from 'react';
       import ReactDOM from 'react-dom/client';
       
-      // 使用相对路径，确保在 Vercel 环境下能正确找到
-      import App from './src/App.jsx';
+      /**
+       * 路径引用：使用相对路径 './src/App.jsx' 
+       * 加上时间戳强制刷新缓存
+       */
+      import App from './src/App.jsx?update=20240311';
 
       const rootElement = document.getElementById('root');
       if (rootElement) {
-        ReactDOM.createRoot(rootElement).render(
-          <React.Suspense fallback={<div>Loading...</div>}>
+        const root = ReactDOM.createRoot(rootElement);
+        root.render(
+          <React.Suspense fallback={<div className="loading-box">渲染中...</div>}>
             <App />
           </React.Suspense>
         );
