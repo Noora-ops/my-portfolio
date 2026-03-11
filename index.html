@@ -3,12 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>张雨婷的作品集</title>
-    <!-- 使用 Tailwind CSS CDN -->
+    <title>张雨婷的作品集 | ZHANG YUTING Portfolio</title>
+    <!-- 引入 Tailwind CSS 进行样式渲染 -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 引入 Babel 来让浏览器实时解析 JSX -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
+    <!-- Import Map: 确保浏览器能识别 React 和图标库 -->
     <script type="importmap">
       {
         "imports": {
@@ -19,43 +18,27 @@
       }
     </script>
     <style>
-      html { scroll-behavior: smooth; }
-      .font-mono { font-family: 'JetBrains Mono', monospace; }
-      .line-clamp-2 {
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-      }
+      /* 这里的样式是为了确保在加载过程中页面不闪烁 */
+      body { margin: 0; background-color: white; }
     </style>
   </head>
   <body>
     <div id="root"></div>
-
-    <!-- 注意：这里的 type 变为了 text/babel，以便浏览器直接运行 JSX -->
-    <script type="text/babel" data-type="module">
-      import React, { useState, useEffect, useRef } from 'react';
+    <script type="module">
+      import React from 'react';
       import ReactDOM from 'react-dom/client';
-      import { 
-        Target, ChevronDown, Mail, Phone, ArrowRight, X, Plus, LineChart, ClipboardList, Globe 
-      } from 'lucide-react';
+      
+      /** * 重要：这里引用的路径 './src/App.jsx' 
+       * 必须对应你 GitHub 仓库中 src 文件夹下的 App.jsx 文件
+       */
+      import App from './src/App.jsx';
 
-      const App = () => {
-        // 这里粘贴我之前为你生成的那个 App.jsx 里的全部代码内容...
-        // 为了演示，我放一个简易结构，你操作时请把右侧代码框的内容全部贴进来
-        return (
-          <div className="p-20 text-center">
-            <h1 className="text-4xl font-bold">加载成功！请将完整 App.jsx 代码粘贴至此。</h1>
-            <p className="mt-4 text-gray-500">如果你能看到这个文字，说明 index.html 配置正确。</p>
-          </div>
+      const rootElement = document.getElementById('root');
+      if (rootElement) {
+        ReactDOM.createRoot(rootElement).render(
+          React.createElement(React.StrictMode, null, React.createElement(App))
         );
-      };
-
-      ReactDOM.createRoot(document.getElementById('root')).render(
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      );
+      }
     </script>
   </body>
 </html>
